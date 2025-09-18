@@ -1,0 +1,43 @@
+# Ignore Node.js dependencies (all projects)
+**/node_modules/
+
+# Build outputs (React, Vite, NestJS, etc.)
+**/dist/
+**/build/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Environment variables
+.env
+.env.*.local
+
+# Editor directories and files
+.vscode/
+.idea/
+*.swp
+*.swo
+*.swn
+.DS_Store
+Thumbs.db
+
+# Cache folders
+**/.cache/
+**/.turbo/
+**/.next/
+**/.nuxt/
+**/.vite/
+**/coverage/
+
+# Typescript build info
+*.tsbuildinfo
+
+# Optional: lock files (if you want only one lockfile at root)
+# Uncomment if you don’t want project-level lockfiles
+# **/package-lock.json
+# **/yarn.lock
+# **/pnpm-lock.yaml
