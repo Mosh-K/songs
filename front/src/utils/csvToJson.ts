@@ -1,16 +1,22 @@
+interface CsvToJsonOptions {
+  headers?: string[];
+  delimiter?: string;
+  skipFirstRow?: boolean;
+}
+
 export async function csvToJson<T>(
   file: File,
-  headers: string[],
-  delimiter: string
+  { headers, delimiter = ",", skipFirstRow = true }: CsvToJsonOptions = {}
 ) {
   const text = await file.text();
   const lines = text.trim().split("\n");
+  const jsonKeys = headers || lines[0].split(delimiter).map((h) => h.trim());
 
-  const json = lines.slice(1).map((line) => {
+  const json = lines.slice(skipFirstRow ? 1 : 0).map((line) => {
     const values = line.split(delimiter).map((v) => v.trim());
     const obj: Record<string, string> = {};
 
-    headers.forEach((header, i) => {
+    jsonKeys.forEach((header, i) => {
       obj[header.trim()] = values[i];
     });
     return obj as T;

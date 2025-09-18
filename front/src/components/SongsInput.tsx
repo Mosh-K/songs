@@ -21,7 +21,10 @@ export default function SongsInput() {
 
   const handleSend = async () => {
     if (file) {
-      const songs = await csvToJson<Song>(file, ["name", "band", "year"], ";");
+      const songs = await csvToJson<Song>(file, {
+        headers: ["name", "band", "year"],
+        delimiter: ";",
+      });
       setLoading(true);
       uploadMutation(songs, {
         onSettled: () => setLoading(false),
@@ -41,6 +44,7 @@ export default function SongsInput() {
     >
       <Stack spacing={2} alignItems="center">
         <Button
+          disabled={loading}
           variant="contained"
           component="label"
           startIcon={<UploadFile />}
@@ -50,6 +54,7 @@ export default function SongsInput() {
             hidden
             type="file"
             accept=".csv"
+            value={""}
             onChange={(e) => setFile(e.target.files?.[0])}
           />
         </Button>

@@ -1,12 +1,12 @@
 import { Box } from "@mui/material";
 import { DataGrid, type GridColDef } from "@mui/x-data-grid";
 import { useGetSongs } from "../api/useSongs";
-import type { Song } from "../types/songTypes";
+import type { SongResponse } from "../types/songTypes";
 
 export default function SongsTable() {
   const { data: songs = [] } = useGetSongs();
 
-  const columns: GridColDef<Song>[] = [
+  const columns: GridColDef<SongResponse>[] = [
     { field: "name", headerName: "Name", flex: 1 },
     { field: "band", headerName: "Band", flex: 1 },
     { field: "year", headerName: "Year", flex: 1 },
@@ -17,7 +17,6 @@ export default function SongsTable() {
       <DataGrid
         columns={columns}
         rows={songs}
-        getRowId={(row) => `${row.name}-${row.band}`}
       />
     </Box>
   );

@@ -3,3 +3,7 @@ export interface Song {
   band: string;
   year: number;
 }
+
+export interface SongResponse extends Song {
+  id: number;
+}
